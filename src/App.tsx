@@ -2,7 +2,8 @@ import { useRef, useState } from 'react'
 import './App.css'
 import AnnouncementDisplay from './components/AnnouncementDisplay'
 import TextForm from './components/TextForm'
-import type { TLObj } from './constants';
+import { playClientAudioAsync, type TLObj } from './helpers';
+import React from 'react';
 
 /**
  * 
@@ -38,12 +39,13 @@ function App() {
    * @param id 
    */
   function removeTextLine(id: number) {
+    playClientAudioAsync('/sounds/delete-textline.wav');
     const updatedTextLines = textLines.filter(line => line.id !== id);
     setTextLines(updatedTextLines);
   }
 
   return (
-    <>
+    <React.Fragment>
       <h1>COOL ANNOUNCER</h1>
       <div id='body-container'>
         <TextForm
@@ -59,7 +61,7 @@ function App() {
           animationPlaying={animationPlaying}
         />
       </div>
-    </>
+    </React.Fragment>
   )
 }
 

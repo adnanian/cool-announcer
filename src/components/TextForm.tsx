@@ -1,4 +1,4 @@
-import type { TLObj } from '../constants';
+import { playClientAudioAsync, type TLObj } from '../helpers';
 import '../styles/TextForm.css';
 
 interface TextFormProps {
@@ -19,9 +19,11 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, onAdd,
                     type='text'
                     value={line.content}
                     onChange={(e) => onUpdate(line.id, { id: line.id, content: e.target.value })}
-                    disabled={animationPlaying}
+                    readOnly={animationPlaying}
                 />
-                <button onClick={() => onRemove(line.id)}>
+                <button
+                    disabled={animationPlaying}
+                    onClick={() => onRemove(line.id)}>
                     —
                 </button>
             </li>
@@ -38,6 +40,7 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, onAdd,
                 <button
                     id='add-button'
                     onClick={onAdd}
+                    onMouseEnter={() => playClientAudioAsync('/sounds/hover-button.wav')}
                     disabled={animationPlaying}
                 >
                     ADD
@@ -45,6 +48,7 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, onAdd,
                 <button
                     id='play-pause-button'
                     onClick={onPlayPause}
+                    onMouseEnter={() => playClientAudioAsync('/sounds/hover-button.wav')}
                     disabled={textLines.length === 0}
                 >
                     {animationPlaying ? 'PAUSE' : 'PLAY'}

@@ -1,4 +1,54 @@
 #body-container>#announcement-display {
     display: flex;
     flex: 3;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+
+    border: 4px inset white;
+    height: 80%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#body-container>#announcement-display>p.wordart {
+    text-align: center;
+    font-size: 75px;
+    font-family: fantasy;
+    font-weight: bold;
+    margin: 0;
+}
+
+p.wordart-black {
+    color: black;
+}
+
+p.wordart-blue {
+    color: blue;
+}
+
+p.wordart-green {
+    color: green;
+}
+
+p.wordart-cyan {
+    color: cyan;
+}
+
+p.wordart-red {
+    color: red;
+}
+
+p.wordart-magenta {
+    color: magenta;
+}
+
+p.wordart-yellow {
+    color: yellow;
+}
+
+p.wordart-white {
+    color: white;
 }

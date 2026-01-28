@@ -11,14 +11,25 @@
 }
 
 #root>h1 {
-  flex: 2;
+  flex: 1;
   margin: 0;
+  background-color: white;
+  color: black;
+  width: 100%;
+  height: fit-content;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid black;
 }
 
 #root>#body-container {
   display: flex;
   flex-direction: row;
-  flex: 11;
+  flex: 9;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
