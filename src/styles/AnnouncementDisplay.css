@@ -1,0 +1,4 @@
+#body-container>#announcement-display {
+    display: flex;
+    flex: 3;
+}
