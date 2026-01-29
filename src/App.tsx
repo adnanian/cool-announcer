@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import './App.css'
 import AnnouncementDisplay from './components/AnnouncementDisplay'
 import TextForm from './components/TextForm'
-import { playClientAudioAsync, type TLObj } from './helpers';
+import { playButtonClickSound, playClientAudioAsync, playKeystrokeSound, type TLObj } from './utils/helpers';
 import React from 'react';
 
 /**
@@ -23,18 +23,17 @@ function App() {
    * @param newLine 
    */
   function addNewEmptyTextLine() {
-    playClientAudioAsync('/sounds/click-button.wav');
-    playClientAudioAsync('/sounds/add-textline.wav');
+    playButtonClickSound();
+    playClientAudioAsync('add-textline.wav');
     setTextLines([...textLines, { id: nextId.current++, content: "" }]);
   }
 
   /**
-   * 
    * @param id 
    * @param updatedTextLine 
    */
   function updateTextLine(id: number, updatedTextLine: TLObj) {
-    playClientAudioAsync('/sounds/keystroke.wav');
+    playKeystrokeSound();
     const updatedTextLines = textLines.map(line =>
       line.id === id ? updatedTextLine : line
     );
@@ -46,8 +45,8 @@ function App() {
    * @param id 
    */
   function removeTextLine(id: number) {
-    playClientAudioAsync('/sounds/click-button.wav');
-    playClientAudioAsync('/sounds/delete-textline.wav');
+    playButtonClickSound();
+    playClientAudioAsync('delete-textline.wav');
     const updatedTextLines = textLines.filter(line => line.id !== id);
     setTextLines(updatedTextLines);
   }
@@ -56,11 +55,20 @@ function App() {
    * 
    */
   function handlePlayPause() {
-    playClientAudioAsync('/sounds/click-button.wav');
-    setAnimationPlaying(!animationPlaying);
+    playButtonClickSound();
+    setAnimationPlaying((prev) => {
+      const newValue: boolean = !prev;
+      if (newValue) {
+        playClientAudioAsync('animation-start.wav');
+      } else {
+        playClientAudioAsync('animation-stop.wav');
+      }
+      return newValue;
+    });
   }
 
   function handleOpenGuide() {
+    playButtonClickSound();
     setGuideOpen(!guideOpen);
   }
 

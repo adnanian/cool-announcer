@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { playClientAudioAsync, randomArrayElement, type TLObj } from '../helpers';
+import { playClientAudioAsync, randomArrayElement, type TLObj } from '../utils/helpers';
 import '../styles/AnnouncementDisplay.css';
 
 interface AnnouncementDisplayProps {
@@ -22,9 +22,9 @@ const OPTIC_COLORS: string[] = [
 ];
 
 const ART_CHANGE_SOUDND_SRCS: string[] = [
-    '/sounds/art-change-1.wav',
-    '/sounds/art-change-2.wav',
-    '/sounds/art-change-3.wav'
+    'art-change-1.wav',
+    'art-change-2.wav',
+    'art-change-3.wav'
 ];
 
 /**
@@ -56,9 +56,7 @@ const AnnouncementDisplay: React.FC<AnnouncementDisplayProps> = ({ textLines, an
             if (animationPlaying) {
                 setBackgroundColor(randomArrayElement(OPTIC_COLORS));
                 setForegroundOpticColors(OPTIC_COLORS.filter(color => color !== backgroundColor));
-                playClientAudioAsync('/sounds/animation-start.wav');
             } else {
-                playClientAudioAsync('/sounds/animation-stop.wav');
                 setBackgroundColor('black');
 
             }

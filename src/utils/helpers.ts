@@ -30,13 +30,21 @@ export function randomArrayElement<T>(arr: T[]): T {
  * @param src the filepath.
  */
 export async function playClientAudioAsync(src: string): Promise<void> {
-  const audio = new Audio(src);
+  const audio = new Audio(`${import.meta.env.BASE_URL}sounds/${src}`);
   audio.play();
   await new Promise<void>((resolve) => {
     audio.onended = () => resolve();
   });
 }
 
-export async function playButtonHover(): Promise<void> {
-  await playClientAudioAsync("/sounds/hover-button.wav");
+export async function playButtonHoverSound(): Promise<void> {
+  await playClientAudioAsync("hover-button.wav");
+}
+
+export async function playButtonClickSound(): Promise<void> {
+  await playClientAudioAsync("click-button.wav");
+}
+
+export async function playKeystrokeSound(): Promise<void> {
+  await playClientAudioAsync("keystroke.wav");
 }

@@ -1,4 +1,4 @@
-import { playButtonHover, playClientAudioAsync, type TLObj } from '../helpers';
+import { playButtonHoverSound, playClientAudioAsync, playKeystrokeSound, type TLObj } from '../utils/helpers';
 import '../styles/TextForm.css';
 
 interface TextFormProps {
@@ -21,14 +21,14 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, guideO
                     type='text'
                     value={line.content}
                     onChange={(e) => onUpdate(line.id, { id: line.id, content: e.target.value })}
-                    onFocus={() => playClientAudioAsync('/sounds/input-focus.wav')}
+                    onFocus={() => playClientAudioAsync('input-focus.wav')}
                     readOnly={animationPlaying || guideOpen}
                     placeholder='Enter text here...'
                 />
                 <button
                     disabled={animationPlaying || guideOpen}
-                    onMouseEnter={playButtonHover}
-                    onFocus={() => playClientAudioAsync('/sounds/keystroke.wav')}
+                    onMouseEnter={playButtonHoverSound}
+                    onFocus={playKeystrokeSound}
                     onClick={() => onRemove(line.id)}
                     title="Remove this line of text."
                 >
@@ -51,8 +51,8 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, guideO
                 <button
                     id='add-button'
                     onClick={onAdd}
-                    onMouseEnter={playButtonHover}
-                    onFocus={playButtonHover}
+                    onMouseEnter={playButtonHoverSound}
+                    onFocus={playButtonHoverSound}
                     disabled={animationPlaying || guideOpen}
                     title="Add a new empty line of text."
                 >
@@ -61,8 +61,8 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, guideO
                 <button
                     id='play-pause-button'
                     onClick={onPlayPause}
-                    onMouseEnter={playButtonHover}
-                    onFocus={playButtonHover}
+                    onMouseEnter={playButtonHoverSound}
+                    onFocus={playButtonHoverSound}
                     disabled={textLines.length === 0 || hasEmptyLine || guideOpen}
                     title={animationPlaying ? "Pause the animation." : "Play the animation."}
                 >
@@ -71,8 +71,8 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, guideO
                 <button
                     id='help-button'
                     onClick={onOpenGuide}
-                    onMouseEnter={playButtonHover}
-                    onFocus={playButtonHover}
+                    onMouseEnter={playButtonHoverSound}
+                    onFocus={playButtonHoverSound}
                     disabled={animationPlaying}
                     title="Get help and information about using the app."
                 >
