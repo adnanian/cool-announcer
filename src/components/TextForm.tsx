@@ -1,4 +1,4 @@
-import { playClientAudioAsync, type TLObj } from '../helpers';
+import { playButtonHover, playClientAudioAsync, type TLObj } from '../helpers';
 import '../styles/TextForm.css';
 
 interface TextFormProps {
@@ -19,10 +19,13 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, onAdd,
                     type='text'
                     value={line.content}
                     onChange={(e) => onUpdate(line.id, { id: line.id, content: e.target.value })}
+                    onFocus={() => playClientAudioAsync('/sounds/input-focus.wav')}
                     readOnly={animationPlaying}
                 />
                 <button
                     disabled={animationPlaying}
+                    onMouseEnter={playButtonHover}
+                    onFocus={() => playClientAudioAsync('/sounds/keystroke.wav')}
                     onClick={() => onRemove(line.id)}>
                     —
                 </button>
@@ -40,7 +43,7 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, onAdd,
                 <button
                     id='add-button'
                     onClick={onAdd}
-                    onMouseEnter={() => playClientAudioAsync('/sounds/hover-button.wav')}
+                    onMouseEnter={playButtonHover}
                     disabled={animationPlaying}
                 >
                     ADD
@@ -48,7 +51,7 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, onAdd,
                 <button
                     id='play-pause-button'
                     onClick={onPlayPause}
-                    onMouseEnter={() => playClientAudioAsync('/sounds/hover-button.wav')}
+                    onMouseEnter={playButtonHover}
                     disabled={textLines.length === 0}
                 >
                     {animationPlaying ? 'PAUSE' : 'PLAY'}

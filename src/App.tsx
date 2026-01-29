@@ -7,6 +7,9 @@ import React from 'react';
 
 /**
  * 
+ * References:
+ * https://hackernoon.com/how-to-handle-hover-events-in-react
+ * 
  * @returns 
  */
 function App() {
@@ -19,6 +22,8 @@ function App() {
    * @param newLine 
    */
   function addNewEmptyTextLine() {
+    playClientAudioAsync('/sounds/click-button.wav');
+    playClientAudioAsync('/sounds/add-textline.wav');
     setTextLines([...textLines, { id: nextId.current++, content: "" }]);
   }
 
@@ -28,6 +33,7 @@ function App() {
    * @param updatedTextLine 
    */
   function updateTextLine(id: number, updatedTextLine: TLObj) {
+    playClientAudioAsync('/sounds/keystroke.wav');
     const updatedTextLines = textLines.map(line =>
       line.id === id ? updatedTextLine : line
     );
@@ -39,9 +45,15 @@ function App() {
    * @param id 
    */
   function removeTextLine(id: number) {
+    playClientAudioAsync('/sounds/click-button.wav');
     playClientAudioAsync('/sounds/delete-textline.wav');
     const updatedTextLines = textLines.filter(line => line.id !== id);
     setTextLines(updatedTextLines);
+  }
+
+  function handlePlayPause() {
+    playClientAudioAsync('/sounds/click-button.wav');
+    setAnimationPlaying(!animationPlaying);
   }
 
   return (
@@ -54,7 +66,7 @@ function App() {
           onUpdate={updateTextLine}
           onRemove={removeTextLine}
           animationPlaying={animationPlaying}
-          onPlayPause={() => setAnimationPlaying(!animationPlaying)}
+          onPlayPause={handlePlayPause}
         />
         <AnnouncementDisplay
           textLines={textLines}

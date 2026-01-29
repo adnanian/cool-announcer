@@ -36,3 +36,7 @@ export async function playClientAudioAsync(src: string): Promise<void> {
     audio.onended = () => resolve();
   });
 }
+
+export async function playButtonHover(): Promise<void> {
+  await playClientAudioAsync("/sounds/hover-button.wav");
+}
