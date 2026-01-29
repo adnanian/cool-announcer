@@ -4,13 +4,15 @@ import '../styles/TextForm.css';
 interface TextFormProps {
     textLines: TLObj[];
     animationPlaying: boolean;
+    guideOpen: boolean;
     onAdd: () => void;
     onUpdate: (id: number, updatedTextLine: TLObj) => void;
     onRemove: (id: number) => void;
     onPlayPause: () => void;
+    onOpenGuide: () => void;
 }
 
-const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, onAdd, onUpdate, onRemove, onPlayPause }) => {
+const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, guideOpen, onAdd, onUpdate, onRemove, onPlayPause, onOpenGuide }) => {
 
     const textLineElements: React.ReactNode[] = textLines.map((line) => {
         return (
@@ -20,22 +22,28 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, onAdd,
                     value={line.content}
                     onChange={(e) => onUpdate(line.id, { id: line.id, content: e.target.value })}
                     onFocus={() => playClientAudioAsync('/sounds/input-focus.wav')}
-                    readOnly={animationPlaying}
+                    readOnly={animationPlaying || guideOpen}
+                    placeholder='Enter text here...'
                 />
                 <button
-                    disabled={animationPlaying}
+                    disabled={animationPlaying || guideOpen}
                     onMouseEnter={playButtonHover}
                     onFocus={() => playClientAudioAsync('/sounds/keystroke.wav')}
-                    onClick={() => onRemove(line.id)}>
+                    onClick={() => onRemove(line.id)}
+                    title="Remove this line of text."
+                >
                     —
                 </button>
             </li>
         );
     });
 
+    // Prevent playing animation if any text line is empty.
+    const hasEmptyLine: boolean = textLines.some(line => line.content.trim() === '');
+
     return (
         <div id="text-form">
-            <h2 className="bordered-textbox">ENTER TEXT HERE</h2>
+            <h2 className="bordered-textbox">ENTER TEXTS HERE</h2>
             <ol id="textarea" className="bordered-textbox">
                 {textLineElements}
             </ol>
@@ -44,7 +52,9 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, onAdd,
                     id='add-button'
                     onClick={onAdd}
                     onMouseEnter={playButtonHover}
-                    disabled={animationPlaying}
+                    onFocus={playButtonHover}
+                    disabled={animationPlaying || guideOpen}
+                    title="Add a new empty line of text."
                 >
                     ADD
                 </button>
@@ -52,9 +62,21 @@ const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, onAdd,
                     id='play-pause-button'
                     onClick={onPlayPause}
                     onMouseEnter={playButtonHover}
-                    disabled={textLines.length === 0}
+                    onFocus={playButtonHover}
+                    disabled={textLines.length === 0 || hasEmptyLine || guideOpen}
+                    title={animationPlaying ? "Pause the animation." : "Play the animation."}
                 >
                     {animationPlaying ? 'PAUSE' : 'PLAY'}
+                </button>
+                <button
+                    id='help-button'
+                    onClick={onOpenGuide}
+                    onMouseEnter={playButtonHover}
+                    onFocus={playButtonHover}
+                    disabled={animationPlaying}
+                    title="Get help and information about using the app."
+                >
+                    {!guideOpen ? 'HELP?' : 'OK!'}
                 </button>
             </div>
         </div>

@@ -15,6 +15,7 @@ import React from 'react';
 function App() {
   const [textLines, setTextLines] = useState<TLObj[]>([]);
   const [animationPlaying, setAnimationPlaying] = useState<boolean>(false);
+  const [guideOpen, setGuideOpen] = useState<boolean>(false);
   const nextId = useRef(1);
 
   /**
@@ -51,9 +52,16 @@ function App() {
     setTextLines(updatedTextLines);
   }
 
+  /**
+   * 
+   */
   function handlePlayPause() {
     playClientAudioAsync('/sounds/click-button.wav');
     setAnimationPlaying(!animationPlaying);
+  }
+
+  function handleOpenGuide() {
+    setGuideOpen(!guideOpen);
   }
 
   return (
@@ -66,11 +74,14 @@ function App() {
           onUpdate={updateTextLine}
           onRemove={removeTextLine}
           animationPlaying={animationPlaying}
+          guideOpen={guideOpen}
           onPlayPause={handlePlayPause}
+          onOpenGuide={handleOpenGuide}
         />
         <AnnouncementDisplay
           textLines={textLines}
           animationPlaying={animationPlaying}
+          guideOpen={guideOpen}
         />
       </div>
     </React.Fragment>
