@@ -66,12 +66,6 @@
 
 }
 
-/* @media (max-width: 600px) {
-  #root>#body-container {
-    flex-direction: column;
-  }
-} */
-
 @media (orientation: portrait) {
   #root>#body-container {
     flex-direction: column;

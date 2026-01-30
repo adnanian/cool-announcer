@@ -26,7 +26,7 @@ const ART_CHANGE_SOUDND_SRCS: string[] = [
 ];
 
 /**
- * Props for AnnouncementDisplay component.
+ * Props for the AnnouncementDisplay component.
  */
 interface AnnouncementDisplayProps {
     /** The array of TextLine objects. */

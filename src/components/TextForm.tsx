@@ -1,17 +1,34 @@
 import { playButtonHoverSound, playClientAudioAsync, playKeystrokeSound, type TLObj } from '../utils/helpers';
 import '../styles/TextForm.css';
 
+/**
+ * Props for the TextForm component.
+ */
 interface TextFormProps {
+    /** The array of TextLine objects.  */
     textLines: TLObj[];
+    /** Boolean indicating if the animation is currently playing. */
     animationPlaying: boolean;
+    /** Boolean indicating if the instructions guide is open. */
     guideOpen: boolean;
+    /** The callback function to execute to add a new text line. */
     onAdd: () => void;
+    /** The callback function to execute to update the text of a line.  */
     onUpdate: (id: number, updatedTextLine: TLObj) => void;
+    /** The callback function to execute to remove a text line. */
     onRemove: (id: number) => void;
+    /** The callback function to execute to play or pause the animation. */
     onPlayPause: () => void;
+    /** The callback function to execute to open or close the instructions guide. */
     onOpenGuide: () => void;
 }
 
+/**
+ * Renders the panel of controls and settings for the text announcer app.
+ * 
+ * @param param0 the props.
+ * @returns the TextForm component.
+ */
 const TextForm: React.FC<TextFormProps> = ({ textLines, animationPlaying, guideOpen, onAdd, onUpdate, onRemove, onPlayPause, onOpenGuide }) => {
 
     const textLineElements: React.ReactNode[] = textLines.map((line) => {

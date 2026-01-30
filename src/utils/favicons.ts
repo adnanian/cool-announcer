@@ -1,4 +1,10 @@
 // src/utils/favicon.ts
+/**
+ * Sets the favicons for the application dynamically based on the BASE_URL.
+ * Notes:
+ * 1. This function should be called once during the app's initialization.
+ * 2. This function was generated using Claude.
+ */
 export function setFavicons() {
   const base = import.meta.env.BASE_URL;
   console.log("Setting favicons with BASE_URL:", base);

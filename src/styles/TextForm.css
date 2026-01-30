@@ -161,13 +161,6 @@ li.text-line>button:disabled {
   cursor: pointer;
 }
 
-/* @media (max-width: 768px) {
-  #body-container>#text-form {
-    width: 100%;
-    flex: 1;
-  }
-} */
-
 @media (orientation: portrait) {
   #body-container>#text-form {
     width: 100%;

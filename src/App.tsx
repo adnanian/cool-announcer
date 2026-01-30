@@ -1,26 +1,31 @@
-import { useRef, useState } from 'react'
-import './App.css'
-import AnnouncementDisplay from './components/AnnouncementDisplay'
-import TextForm from './components/TextForm'
+import { useRef, useState } from 'react';
+import './App.css';
+import AnnouncementDisplay from './components/AnnouncementDisplay';
+import TextForm from './components/TextForm';
 import { playButtonClickSound, playClientAudioAsync, playKeystrokeSound, type TLObj } from './utils/helpers';
 import React from 'react';
 
 /**
+ * Organizes the main body components of this application: the TextForm
+ * and AnnouncerDisplay components.
  * 
  * References:
  * https://hackernoon.com/how-to-handle-hover-events-in-react
  * 
- * @returns 
+ * @returns the App component.
  */
 function App() {
+  // The array of TextLine objects.
   const [textLines, setTextLines] = useState<TLObj[]>([]);
+  // Boolean indicating if the animation is currently playing.
   const [animationPlaying, setAnimationPlaying] = useState<boolean>(false);
+  // Boolean indicating if the instructions guide is open.
   const [guideOpen, setGuideOpen] = useState<boolean>(false);
+  // The next ID number for a new text line.
   const nextId = useRef(1);
 
   /**
-   * 
-   * @param newLine 
+   * Adds a new empty text line to the list.
    */
   function addNewEmptyTextLine() {
     playButtonClickSound();
@@ -29,8 +34,10 @@ function App() {
   }
 
   /**
-   * @param id 
-   * @param updatedTextLine 
+   * Updates the text of a specific line.
+   * 
+   * @param id the id of the text line.
+   * @param updatedTextLine the updated text line object.
    */
   function updateTextLine(id: number, updatedTextLine: TLObj) {
     playKeystrokeSound();
@@ -41,8 +48,9 @@ function App() {
   }
 
   /**
+   * Removes a text line by its ID.
    * 
-   * @param id 
+   * @param id the id of the text line to remove.
    */
   function removeTextLine(id: number) {
     playButtonClickSound();
@@ -52,7 +60,7 @@ function App() {
   }
 
   /**
-   * 
+   * Toggles the animation playing state.
    */
   function handlePlayPause() {
     playButtonClickSound();
@@ -67,6 +75,9 @@ function App() {
     });
   }
 
+  /**
+   * Toggles the instructions guide open state.
+   */
   function handleOpenGuide() {
     playButtonClickSound();
     setGuideOpen(!guideOpen);
@@ -96,4 +107,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
