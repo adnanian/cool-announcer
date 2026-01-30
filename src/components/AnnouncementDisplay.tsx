@@ -2,14 +2,11 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { playClientAudioAsync, randomArrayElement, type TLObj } from '../utils/helpers';
 import '../styles/AnnouncementDisplay.css';
 
-interface AnnouncementDisplayProps {
-    textLines: TLObj[];
-    animationPlaying: boolean;
-    guideOpen: boolean;
-}
-
+// The interval for changing text colors and playing sound effects during animation.
 const ANIMATION_INTERVAL: number = 100; // milliseconds
 
+// Colors in the RGB and CMYK spectrum for optic effects.
+// I call them optic colors for the sake of having an all-encompassing term that includes white.
 const OPTIC_COLORS: string[] = [
     'black',
     'blue',
@@ -21,6 +18,7 @@ const OPTIC_COLORS: string[] = [
     'white'
 ];
 
+// Sound files for art change effects.
 const ART_CHANGE_SOUDND_SRCS: string[] = [
     'art-change-1.wav',
     'art-change-2.wav',
@@ -28,16 +26,37 @@ const ART_CHANGE_SOUDND_SRCS: string[] = [
 ];
 
 /**
+ * Props for AnnouncementDisplay component.
+ */
+interface AnnouncementDisplayProps {
+    /** The array of TextLine objects. */
+    textLines: TLObj[];
+    /** Boolean indicating if the animation is currently playing. */
+    animationPlaying: boolean;
+    /** Boolean indicating if the instructions guide is open. */
+    guideOpen: boolean;
+}
+
+/**
+ * Renders the board where a colorful background and color-changing text animation is displayed.
+ * 
+ * Note that the `animationPlaying` and `guideOpen` booleans are mutually exclusive,
+ * in the sense that it is never possible for both of them to be true at the same time.
+ * Although, they can both be simultaneously false. 
+ * 
+ * Also note that the background color of the board is always black when the
+ * animation is not playing and will only be set to a random optic color when
+ * the animation starts playing.
  * 
  * References:
  * https://www.geeksforgeeks.org/javascript/how-to-get-character-array-from-string-in-javascript/
  * https://www.w3schools.com/js/js_random.asp
  * 
  * @param param0 
- * @returns 
+ * @returns the AnnouncementDisplay component.
  */
 const AnnouncementDisplay: React.FC<AnnouncementDisplayProps> = ({ textLines, animationPlaying, guideOpen }) => {
-
+    // The background color of the board.
     const [backgroundColor, setBackgroundColor] = useState<string>('black');
     const [foregroundOpticColors, setForegroundOpticColors] = useState<string[]>([]);
     const [colorList, setColorList] = useState<string[]>([]);
@@ -58,7 +77,6 @@ const AnnouncementDisplay: React.FC<AnnouncementDisplayProps> = ({ textLines, an
                 setForegroundOpticColors(OPTIC_COLORS.filter(color => color !== backgroundColor));
             } else {
                 setBackgroundColor('black');
-
             }
 
         }, 0);

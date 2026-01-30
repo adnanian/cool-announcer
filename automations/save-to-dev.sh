@@ -15,7 +15,7 @@ cd "$ROOT_DIR"
 # The first echo provides an error message, the second echo provides usage instructions.
 if [ -z "$1" ]; then
     echo "Error: Please provide a commit message"
-    echo "Usage: ./deploy-app.sh \"your commit message\""
+    echo "Usage: ./automations/save-to-dev.sh \"your commit message\""
     exit 1
 fi
 
@@ -25,5 +25,3 @@ MESSAGE="$1"
 git add .
 git commit -m "${MESSAGE}"
 git push origin HEAD
-git push origin HEAD:main
-npm run deploy
