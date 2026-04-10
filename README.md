@@ -1,11 +1,14 @@
 # Cool Announcer
 
+![Version](https://img.shields.io/badge/version-1.1.0-0a7ea4)
+![Build](https://github.com/adnanian/cool-announcer/actions/workflows/ci.yml/badge.svg)
+
 |                                          |                                                        |
 |------------------------------------------|--------------------------------------------------------|
 |                  Author                  |                      Adnan Wazwaz                      |
-|                  Version                 |                           1.0                          |
+|                  Version                 |                          1.1.0                         |
 |               Original Date              |                     2026 January 30                    |
-|           Current Version Date           |                     2026 January 30                    |
+|           Current Version Date           |                     2026 April 10                      |
 |             Adnanian App No.             |                           21                           |
 | [**Demo**](https://youtu.be/yrruudKnc3I) | [**Live**](https://adnanian.github.io/cool-announcer/) |
 
@@ -16,12 +19,16 @@
 3. [How to Use](#how-to-use)
 4. [Technologies](#technologies)
 5. [Limitations](#limitations)
-6. [Future Plans](#future-plans)
-7. [Credits](#credits)
+6. [Setup](#setup)
+7. [Available Scripts](#available-scripts)
+8. [Project Standards](#project-standards)
+9. [Future Plans](#future-plans)
+10. [README Review Notes](#readme-review-notes)
+11. [Credits](#credits)
 
 ## Overview
 
-Over the course of 2025, my coding skills have become rather ruty. As I
+Over the course of 2025, my coding skills have become rather rusty. As I
 transition to a full-time indie app developer, I needed to refresh by
 re-warming up my muscles.
 
@@ -33,7 +40,7 @@ input controls are full of fun 8-bit or 16-bit sounds.
 
 Given that this was a warmup project, I kept design and budget as low as possible.
 It wasn't worth designing a wireframe on Figma, so I used Microsoft Paint 3D for
-desining both the wireframe and the logo. The application only consists of one
+designing both the wireframe and the logo. The application only consists of one
 page.
 
 Initial MVP Wireframe:
@@ -57,7 +64,7 @@ And how to use it exactly what I'll cover in the next section.
 
 ## How to Use
 
-**IMPORANT: Since the textfields, buttons, and color change animations play
+**IMPORTANT: Since the text fields, buttons, and color change animations play
 audio at a fast interval of 100 milliseconds, I strongly recommend you use
 this application on a desktop or laptop.**
 
@@ -98,6 +105,37 @@ Cool Announcer is a purely frontend web application, created using the following
 
 The app is currently hosted on GitHub Pages.
 
+## Setup
+
+### Prerequisites
+
+- Node.js 22.x (recommended)
+- npm 10+
+
+### Local Development
+
+```bash
+npm install
+npm run dev
+```
+
+Then open the local Vite URL shown in your terminal (typically `http://localhost:5173`).
+
+## Available Scripts
+
+- `npm run dev` starts the Vite development server.
+- `npm run build` runs TypeScript project build checks and creates a production build.
+- `npm run lint` runs ESLint across the repository.
+- `npm run preview` serves the production build locally.
+- `npm run deploy` builds and deploys `dist/` to GitHub Pages.
+
+## Project Standards
+
+- Change history: see [CHANGELOG.md](CHANGELOG.md)
+- Contributions: see [CONTRIBUTING.md](CONTRIBUTING.md)
+- Security reporting: see [SECURITY.md](SECURITY.md)
+- License terms: see [LICENSE](LICENSE)
+
 ## Limitations
 
 Due to the fast interval of sounds playing for the animation, this app
@@ -114,6 +152,15 @@ If I ever have free time, need to refresh my frontend or programming fundamental
 or learn new skills for my trade, I will use this as a base for such.
 
 One future feature is to add fancier word art animation beyond color changing.
+
+## README Review Notes
+
+No sections were removed.
+
+Sections that may be simplified later while still keeping the same information:
+
+- `Credits`: currently includes full MIT license text, which is already maintained in `LICENSE`. You could keep a shorter credits section with a pointer to `LICENSE`.
+- `Design`: image-heavy details are great for project history, but this section could be moved to a separate project journal if you ever want a shorter business-facing README.
 
 ## Credits
 
