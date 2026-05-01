@@ -46,3 +46,4 @@ fi
 
 git push origin HEAD:main
 npm run deploy
+# THIS SCRIPT BETTER WORK OR I'LL BE VERY SAD. XD
