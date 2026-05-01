@@ -26,10 +26,15 @@ else
     git commit -m "${MESSAGE}"
 fi
 
-if ! git push origin "HEAD:${CURRENT_BRANCH}"; then
-    echo "Non-fast-forward on ${CURRENT_BRANCH}. Retrying with --force-with-lease..."
-    git fetch origin
-    git push --force-with-lease origin "HEAD:${CURRENT_BRANCH}"
+if git show-ref --verify --quiet "refs/remotes/origin/${CURRENT_BRANCH}"; then
+    if git merge-base --is-ancestor "origin/${CURRENT_BRANCH}" HEAD; then
+        git push origin "HEAD:${CURRENT_BRANCH}"
+    else
+        echo "Remote ${CURRENT_BRANCH} is not an ancestor of local HEAD. Using --force-with-lease..."
+        git push --force-with-lease origin "HEAD:${CURRENT_BRANCH}"
+    fi
+else
+    git push -u origin "HEAD:${CURRENT_BRANCH}"
 fi
 
 git push origin HEAD:main
