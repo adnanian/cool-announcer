@@ -9,6 +9,13 @@ and this project adheres to Semantic Versioning.
 
 No changes yet.
 
+## [1.1.1] - 2026-04-30
+
+### Security
+
+- Re-ran `npm audit` and `npm audit fix` to address dependency vulnerabilities.
+- Updated project dependencies to remove all currently reported npm audit vulnerabilities.
+
 ## [1.1.0] - 2026-04-10
 
 ### Added

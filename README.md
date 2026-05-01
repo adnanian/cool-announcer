@@ -1,14 +1,14 @@
 # Cool Announcer
 
-![Version](https://img.shields.io/badge/version-1.1.0-0a7ea4)
+![Version](https://img.shields.io/badge/version-1.1.1-0a7ea4)
 ![Build](https://github.com/adnanian/cool-announcer/actions/workflows/ci.yml/badge.svg)
 
 |                                          |                                                        |
 |------------------------------------------|--------------------------------------------------------|
 |                  Author                  |                      Adnan Wazwaz                      |
-|                  Version                 |                          1.1.0                         |
+|                  Version                 |                          1.1.1                         |
 |               Original Date              |                     2026 January 30                    |
-|           Current Version Date           |                     2026 April 10                      |
+|           Current Version Date           |                     2026 April 30                      |
 |             Adnanian App No.             |                           21                           |
 | [**Demo**](https://youtu.be/yrruudKnc3I) | [**Live**](https://adnanian.github.io/cool-announcer/) |
 
@@ -135,6 +135,7 @@ Then open the local Vite URL shown in your terminal (typically `http://localhost
 - Contributions: see [CONTRIBUTING.md](CONTRIBUTING.md)
 - Security reporting: see [SECURITY.md](SECURITY.md)
 - License terms: see [LICENSE](LICENSE)
+- Dependency security maintenance: `npm audit` and `npm audit fix` completed on 2026 April 30.
 
 ## Limitations
 
