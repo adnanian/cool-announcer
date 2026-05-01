@@ -154,7 +154,7 @@ or learn new skills for my trade, I will use this as a base for such.
 
 One future feature is to add fancier word art animation beyond color changing.
 
-## README Review Notes
+## README Review Notes (PAY ATTENTION NEXT SECURITY PATCH)
 
 No sections were removed.
 
